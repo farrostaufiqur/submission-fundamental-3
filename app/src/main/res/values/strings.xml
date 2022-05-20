@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">GitHub User App</string>
+    <string name="todo">TODO</string>
+
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="repository">Repository</string>
+    <string name="company">Company</string>
+
+    <string name="this_is_username">this is username</string>
+    <string name="this_is_name">this is name</string>
+    <string name="this_is_location">this is location</string>
+    <string name="this_is_repository">this is repository</string>
+    <string name="this_is_company">this is company</string>
+    <string name="dot">:</string>
+
+    <string name="settings">System Language</string>
+    <string name="search_hint">Search</string>
+    <string name="tab_text_1">Following</string>
+    <string name="tab_text_2">Followers</string>
+    <string name="blog">Blog</string>
+    <string name="this_is_blog">this_is_blog</string>
+    <string name="bio">Bio</string>
+    <string name="this_is_bio">this_is_bio</string>
+    <string name="tabs">tabs</string>
+    <string name="dark_theme">Switch to Dark</string>
+    <string name="light_theme">Switch to Light</string>
+    <string name="clean">Delete All</string>
+</resources>
+
+
