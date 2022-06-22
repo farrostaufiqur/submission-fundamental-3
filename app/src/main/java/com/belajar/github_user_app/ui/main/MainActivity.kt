@@ -3,24 +3,25 @@ package com.belajar.github_user_app.ui.main
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.belajar.github_user_app.recycler.ListUserAdapter
 import com.belajar.github_user_app.R
 import com.belajar.github_user_app.databinding.ActivityMainBinding
-import com.belajar.github_user_app.network.User
+import com.belajar.github_user_app.network.GithubResponse
+import com.belajar.github_user_app.recycler.UserAdapter
+import com.belajar.github_user_app.ui.favorite.FavoriteActivity
+import com.belajar.github_user_app.ui.settings.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val listUser = ArrayList<User>()
+    private val listUser = ArrayList<GithubResponse.User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
-        viewModel.users.observe(this) { userArray ->
-            setGitHubUserData(userArray)
+        viewModel.users.observe(this) {
+            setGitHubUserData(it)
         }
         viewModel.isLoading.observe(this) {
             showLoading(it)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(q: String): Boolean {
                 listUser.clear()
                 viewModel.searchUser(q)
-                val adapter = ListUserAdapter(listUser)
+                val adapter = UserAdapter(listUser)
                 binding.rvUser.adapter = adapter
                 return true
             }
@@ -59,13 +60,24 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setGitHubUserData(listUserID: List<User>) {
-        val list = ArrayList<User>()
+    private fun setGitHubUserData(listUserID: List<GithubResponse.User>) {
+        val list = ArrayList<GithubResponse.User>()
         for (userID in listUserID) {
-            val user = User(userID.login, userID.avatarUrl, userID.followers, userID.following, userID.name, userID.company, userID.location, userID.bio, userID.blog, userID.publicRepos)
+            val user = GithubResponse.User(
+                userID.login,
+                userID.avatarUrl,
+                userID.followers,
+                userID.following,
+                userID.name,
+                userID.company,
+                userID.location,
+                userID.bio,
+                userID.blog,
+                userID.publicRepos
+            )
             list.add(user)
         }
-        val listUserAdapter = ListUserAdapter(list)
+        val listUserAdapter = UserAdapter(list)
         binding.rvUser.adapter = listUserAdapter
     }
 
@@ -78,14 +90,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.option_light_menu, menu)
+        menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.favorites -> {
+                val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
                 startActivity(intent)
                 true
             }

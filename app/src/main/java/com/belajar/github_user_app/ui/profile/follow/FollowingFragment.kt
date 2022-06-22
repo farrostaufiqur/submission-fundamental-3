@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.belajar.github_user_app.recycler.ListUserAdapter
 import com.belajar.github_user_app.databinding.FragmentFollowingBinding
 import com.belajar.github_user_app.network.ApiConfig
 import com.belajar.github_user_app.network.GithubResponse
-import com.belajar.github_user_app.network.User
+import com.belajar.github_user_app.recycler.UserAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,8 +43,8 @@ class FollowingFragment : Fragment() {
     private fun getFollowing(q: String){
         binding.pbFollowing.visibility = View.VISIBLE
         val client= ApiConfig.getApiService().getFollowing(q)
-        client.enqueue(object : Callback<List<User>> {
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>){
+        client.enqueue(object : Callback<List<GithubResponse.User>> {
+            override fun onResponse(call: Call<List<GithubResponse.User>>, response: Response<List<GithubResponse.User>>){
                 if(response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -61,7 +60,7 @@ class FollowingFragment : Fragment() {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
-            override fun onFailure(call: Call<List<User>>, t: Throwable){
+            override fun onFailure(call: Call<List<GithubResponse.User>>, t: Throwable){
                 binding.pbFollowing.visibility = View.GONE
                 Toast.makeText(activity, "onFailure: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e(TAG, "onFailure: ${t.message}")
@@ -69,14 +68,25 @@ class FollowingFragment : Fragment() {
         })
     }
 
-    private fun setFollowing(listUserFollowing: List<User>) {
-        val list = ArrayList <User>()
+    private fun setFollowing(listUserFollowing: List<GithubResponse.User>) {
+        val list = ArrayList <GithubResponse.User>()
         for (userID in listUserFollowing) {
-            val user = User(userID.login, userID.avatarUrl, userID.followers, userID.following, userID.name, userID.company, userID.location, userID.bio, userID.blog, userID.publicRepos)
+            val user = GithubResponse.User(
+                userID.login,
+                userID.avatarUrl,
+                userID.followers,
+                userID.following,
+                userID.name,
+                userID.company,
+                userID.location,
+                userID.bio,
+                userID.blog,
+                userID.publicRepos
+            )
             list.add(user)
         }
-        val listUserAdapter = ListUserAdapter(list)
-        binding.rvFollowing.adapter = listUserAdapter
+        val userAdapter = UserAdapter(list)
+        binding.rvFollowing.adapter = userAdapter
     }
 
     companion object {

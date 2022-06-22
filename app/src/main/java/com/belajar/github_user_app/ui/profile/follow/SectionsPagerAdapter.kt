@@ -5,8 +5,6 @@ package com.belajar.github_user_app.ui.profile.follow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.belajar.github_user_app.ui.profile.follow.FollowersFragment
-import com.belajar.github_user_app.ui.profile.follow.FollowingFragment
 
 class SectionsPagerAdapter (activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 

@@ -1,22 +1,38 @@
 package com.belajar.github_user_app.ui.profile
 
-import android.app.Application
-import androidx.lifecycle.ViewModel
-import com.belajar.github_user_app.database.Favorite
-import com.belajar.github_user_app.repository.FavoriteRepository
+import androidx.lifecycle.*
+import com.belajar.github_user_app.database.ConfigDatabase
+import com.belajar.github_user_app.network.GithubResponse
+import kotlinx.coroutines.launch
 
-class ProfileViewModel(application: Application) : ViewModel() {
-    private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
+@Suppress("UNCHECKED_CAST")
+class ProfileViewModel(private val db: ConfigDatabase) : ViewModel() {
 
-    fun insert(favorite: Favorite) {
-        mFavoriteRepository.insert(favorite)
+    private val _isFavorite = MutableLiveData<Boolean>()
+    val isFavorite: LiveData<Boolean> = _isFavorite
+
+    fun saveUser(user: GithubResponse.User) {
+        viewModelScope.launch {
+            if (_isFavorite.value == true) {
+                db.dao.delete(user)
+                _isFavorite.value = false
+            } else {
+                db.dao.insert(user)
+                _isFavorite.value = true
+            }
+        }
     }
 
-    fun update(favorite: Favorite) {
-        mFavoriteRepository.update(favorite)
+    fun getFavorite(username: String){
+        viewModelScope.launch {
+            val user = db.dao.getUser(username)
+            if (user != null){
+                _isFavorite.value = true
+            }
+        }
     }
 
-    fun delete(favorite: Favorite) {
-        mFavoriteRepository.delete(favorite)
+    class Factory(private val db: ConfigDatabase) : ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = ProfileViewModel(db) as T
     }
 }

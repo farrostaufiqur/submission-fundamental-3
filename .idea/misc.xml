@@ -3,11 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1" />
         <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_favorite.xml" value="0.25" />
         <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_profile.xml" value="0.5084306095979247" />
+        <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/menu/option_dark_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/menu/option_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Data/Document/1. Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/xml/preferences.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_favorite.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_profile.xml" value="0.33" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_settings.xml" value="0.5" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/fragment_followers.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/fragment_following.xml" value="0.1" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/layout/item_row_user.xml" value="0.22" />
+        <entry key="..\:/Data/Document/Android/GitHub_User_App_All/GitHub_User_App 3/app/src/main/res/menu/option_menu.xml" value="0.5" />
       </map>
     </option>
   </component>

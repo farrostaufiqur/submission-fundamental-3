@@ -14,7 +14,7 @@
     <string name="this_is_company">this is company</string>
     <string name="dot">:</string>
 
-    <string name="settings">System Language</string>
+    <string name="settings">Settings</string>
     <string name="search_hint">Search</string>
     <string name="tab_text_1">Following</string>
     <string name="tab_text_2">Followers</string>
@@ -26,6 +26,9 @@
     <string name="dark_theme">Switch to Dark</string>
     <string name="light_theme">Switch to Light</string>
     <string name="clean">Delete All</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="favorites">Favorites</string>
+    <string name="system_language">System Language</string>
 </resources>
 
 

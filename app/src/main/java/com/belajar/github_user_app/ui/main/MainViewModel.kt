@@ -6,14 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.belajar.github_user_app.network.ApiConfig
 import com.belajar.github_user_app.network.GithubResponse
-import com.belajar.github_user_app.network.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel(){
-    private val _users = MutableLiveData<List<User>>()
-    val users: LiveData<List<User>> = _users
+class MainViewModel: ViewModel(){
+    private val _users = MutableLiveData<List<GithubResponse.User>>()
+    val users: LiveData<List<GithubResponse.User>> = _users
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -40,7 +39,6 @@ class MainViewModel : ViewModel(){
             }
         })
     }
-
     companion object{
         private const val TAG = "MainViewModel"
     }
